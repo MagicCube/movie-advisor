@@ -4,8 +4,22 @@ const Movie = mongoose.model("movie");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-    Movie.findMostRecent(100, (error, movies) => {
+    pageIndex = 0;
+    if (req.query.p)
+    {
+        pageIndex = parseInt(req.query.p);
+    }
+    Movie.findMostRecent(pageIndex, 100, (error, movies) => {
         res.render("movie/index", {
+            movies
+        });
+    });
+});
+
+router.get("/watched", (req, res) => {
+    Movie.findWatched((error, movies) => {
+        res.render("movie/search", {
+            keyword: "已看过",
             movies
         });
     });

@@ -12,5 +12,6 @@ ul.ma-movie-list
                 h3.rating= `${movie.rating ? movie.rating + " 分" : ""}`
                 ul
                     li.country= `国家：${movie.countries.join(" / ")}`
+                    li.genres= `类型：${movie.genres.join(" / ")}`
                     li.director= `导演: ${movie.directors.join(" / ")}`
                     li.casts= `主演: ${movie.casts.join(" / ")}`

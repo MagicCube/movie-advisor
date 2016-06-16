@@ -16,7 +16,7 @@ const schema = mongoose.Schema({
 
     watched: { type: Boolean, index: true }
 }, {
-    collection: "pianyuan.mv"
+    collection: "movie"
 });
 
 schema.statics.searchByKeyword = function(keyword, cb) {
@@ -27,8 +27,13 @@ schema.statics.findById = function(id, cb) {
     this.findOne({ _id: id }, cb);
 };
 
-schema.statics.findMostRecent = function(count, cb) {
-    this.find().limit(count).exec(cb);
+schema.statics.findWatched = function(cb) {
+    this.find({ watched: true }).exec(cb);
+};
+
+
+schema.statics.findMostRecent = function(pageIndex, pageSize, cb) {
+    this.find().skip(pageIndex * pageIndex).limit(pageSize).exec(cb);
 };
 
 schema.statics.watch = function(id, cb) {

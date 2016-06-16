@@ -15,7 +15,10 @@ schema.statics.watch = function(id, cb) {
         }
         else
         {
-            cb();
+            if (typeof(cb) === "function")
+            {
+                cb();
+            }
         }
     });
 };
@@ -24,11 +27,14 @@ schema.statics.unwatch = function(id, cb) {
     this.findOne({ py_id: id }, (error, movie) => {
         if (movie)
         {
-            this.remove([ { py_id: id } ], cb);
+            this.remove({ py_id: id }, cb);
         }
         else
         {
-            cb();
+            if (typeof(cb) === "function")
+            {
+                cb();
+            }
         }
     });
 };

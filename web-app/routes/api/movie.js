@@ -37,8 +37,8 @@ router.get("/:id", (req, res, next) => {
 router.post("/:id/watched", (req, res) => {
     if (req.params.id)
     {
-        Movie.watch(req.params.id);
-        Watched.watch(req.params.id, error => {
+        Watched.watch(req.params.id);
+        Movie.watch(req.params.id, error => {
             if (!error)
             {
                 res.send({ successful: true });
@@ -58,8 +58,8 @@ router.post("/:id/watched", (req, res) => {
 router.post("/:id/unwatched", (req, res) => {
     if (req.params.id)
     {
-        Movie.unwatch(req.params.id);
-        Watched.unwatch(req.params.id, error => {
+        Watched.unwatch(req.params.id);
+        Movie.unwatch(req.params.id, error => {
             if (!error)
             {
                 res.send({ successful: true });

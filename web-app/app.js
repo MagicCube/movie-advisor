@@ -19,6 +19,14 @@ mongoose.connect("mongodb://localhost/movie-advisor", (error) => {
     {
         console.error(error);
     }
+
+    Watched = mongoose.model("watched");
+    Movie = mongoose.model("movie");
+    Movie.findWatched((error, movies) => {
+        movies.forEach(movie => {
+            Watched.watch(movie.py_id);
+        });
+    });
 });
 require("./lib/model");
 
