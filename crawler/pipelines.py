@@ -16,7 +16,7 @@ class MongoDbPipeline(object):
             mongodb_settings["port"]
         )
         db = connection[mongodb_settings["db"]]
-        collection = db["pianyuan.mv"]
+        collection = db["movie"]
         # Build indices
         collection.create_index([ ("py_url", pymongo.ASCENDING) ])
         self.collection = collection

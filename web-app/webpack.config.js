@@ -6,7 +6,7 @@ module.exports = {
     entry: {
         vendor: [ "jquery" ],
         ma: [ "./ma/res/index.less" ],
-        tr: [ "./tr/index.js", "./tr/res/index.less" ]
+        mv: [ "./mv/index.js", "./mv/res/index.less" ]
     },
     output: {
         path: path.resolve(__dirname, "./public/assets"),

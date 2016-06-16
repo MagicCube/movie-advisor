@@ -31,7 +31,7 @@ class PianyuanMovieSpider(scrapy.Spider):
 
     def parse_movie_detail(self, response):
         movie = response.meta["movie"]
-        search_result = re.search(r'm_D([a-zA-Z0-9]+)0\.html', response.url)
+        search_result = re.search(r'm_([a-zA-Z0-9]+)\.html', response.url)
         if search_result:
             id = search_result.group(1)
         else:

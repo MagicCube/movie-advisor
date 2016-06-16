@@ -19,6 +19,14 @@ mongoose.connect("mongodb://localhost/movie-advisor", (error) => {
     {
         console.error(error);
     }
+
+    Watched = mongoose.model("watched");
+    Movie = mongoose.model("movie");
+    Movie.findWatched((error, movies) => {
+        movies.forEach(movie => {
+            Watched.watch(movie.py_id);
+        });
+    });
 });
 require("./lib/model");
 
@@ -36,50 +44,14 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-// Routes
-const routes = require("./routes/index");
-app.use("/", routes);
-
 // Webpack middleware
 const compiler = webpack(require("./webpack.config"))
 app.use(webpackDevMiddleware(compiler, {
     publicPath: "/assets"
 }));
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    const err = new Error("Not Found");
-    err.status = 404;
-    next(err);
-});
-
-// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get("env") === "development") {
-    app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
-        /*
-        res.render("error", {
-            message: err.message,
-            error: err
-        });
-        */
-    });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    /*
-    res.render("error", {
-        message: err.message,
-        error: {}
-    });
-    */
-});
-
+// Routes
+const routes = require("./routes/index");
+app.use("/", routes);
 
 module.exports = app;
