@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const schema = mongoose.Schema({
     title: { type: String, index: true },
+    fullTitle: { type: String, index: true },
     year: Number,
     imageUrl: String,
     imdb: { type: String, index: true },

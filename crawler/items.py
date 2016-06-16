@@ -4,6 +4,7 @@ from scrapy import Field, Item
 
 class MovieItem(Item):
     title = Field()
+    fullTitle = Field()
     year = Field()
     imageUrl = Field()
     imdb = Field()

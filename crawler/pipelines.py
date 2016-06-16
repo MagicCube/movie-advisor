@@ -18,6 +18,9 @@ class MongoDbPipeline(object):
         db = connection[mongodb_settings["db"]]
         collection = db["movie"]
         # Build indices
+        collection.create_index([ ("title", pymongo.ASCENDING) ])
+        collection.create_index([ ("fullTitle", pymongo.ASCENDING) ])
+        collection.create_index([ ("imdb", pymongo.ASCENDING) ])
         collection.create_index([ ("py_url", pymongo.ASCENDING) ])
         self.collection = collection
 
