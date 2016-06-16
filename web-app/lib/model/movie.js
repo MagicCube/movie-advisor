@@ -10,6 +10,7 @@ const schema = mongoose.Schema({
     directors: [ String ],
     casts: [ String ],
     rating: Number,
+    addTime: Date,
 
     py_id: { type: String, index: true },
     py_url: String,

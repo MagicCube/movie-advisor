@@ -12,6 +12,7 @@ class MovieItem(Item):
     directors = Field()
     casts = Field()
     rating = Field()
+    addTime = Field()
 
     # pianyuan.net
     py_id = Field()
