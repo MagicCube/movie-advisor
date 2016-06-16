@@ -1,0 +1,18 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        title 影荐 - 比你更懂你自己的电影推荐
+        link(rel="stylesheet", href="../assets/ma/res/index.css", charset="utf-8")
+        script(src="/assets/vendor/bundle.js", charset="utf-8")
+        script(src="/assets/ma/bundle.js", charset="utf-8")
+    body
+        .ma-header
+            .container
+                h1 <a href="/">影荐</a>
+                form.search-form(method="get", action="/movie/search")
+                    input(type="search", name="k", placeholder="输入关键字搜索电影" value=keyword)
+                    button 搜索
+        .ma-main
+            .container
+                block main

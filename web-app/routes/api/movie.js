@@ -6,14 +6,35 @@ const router = express.Router();
 const app = express();
 
 router.get("/:id", (req, res, next) => {
-    if (req.params.id === "search")
+    if (req.params.id !== "search")
     {
-        next()
+        Movie.findById(req.params.id, (error, movie) => {
+            if (!error)
+            {
+                res.send({
+                    successful: true,
+                    result: movie
+                });
+            }
+            else
+            {
+                res.send({
+                    successful: false,
+                    error: {
+                        message: error.message
+                    }
+                });
+            }
+        });
+    }
+    else
+    {
+        next();
     }
 });
 
 router.get("/search", (req, res) => {
-    Movie.find({ title: new RegExp(req.query.k, "i") }, (error, movies) => {
+    Movie.searchByKeyword(req.query.k, (error, movies) => {
         if (!error)
         {
             res.send({

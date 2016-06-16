@@ -5,8 +5,7 @@ module.exports = {
     context: path.resolve(__dirname, "./src"),
     entry: {
         vendor: [ "jquery" ],
-        ma: [ "./ma/res/index.less" ],
-        tr: [ "./tr/index.js", "./tr/res/index.less" ]
+        ma: [ "./ma/res/index.less" ]
     },
     output: {
         path: path.resolve(__dirname, "./public/assets"),

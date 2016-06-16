@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-schema = mongoose.Schema({
+const schema = mongoose.Schema({
     title: String,
     year: String,
     imageUrl: String,
@@ -16,5 +16,17 @@ schema = mongoose.Schema({
 }, {
     collection: "pianyuan.mv"
 });
+
+schema.statics.searchByKeyword = function(keyword, cb) {
+    return this.find({ title: new RegExp(keyword, 'i') }, cb);
+};
+
+schema.statics.findById = function(id, cb) {
+    return this.findOne({ _id: id }, cb);
+};
+
+schema.statics.findMostRecent = function(count, cb) {
+    return this.find().limit(count).exec(cb);
+};
 
 mongoose.model("movie", schema);

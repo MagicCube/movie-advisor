@@ -1,0 +1,13 @@
+ul.ma-movie-list
+    each movie in movies
+        li
+            .column-1
+                img(src=movie.imageUrl)
+                button.watched 已看
+            .column-2
+                h3.title=`${movie.title} (${movie.year})`
+                h3.rating=`${movie.rating ? movie.rating + " 分" : ""}`
+                ul
+                    li.country=`国家：${movie.countries.join(" / ")}`
+                    li.director=`导演: ${movie.directors.join(" / ")}`
+                    li.casts=`主演: ${movie.casts.join(" / ")}`

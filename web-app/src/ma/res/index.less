@@ -1,12 +1,134 @@
 @import "normalize.less";
+@import "variables.less";
+@import "common.less";
 
-*
+.ma-header
 {
-    font-family: "微软雅黑", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    box-sizing: border-box;
+    background: @ma-theme-color;
+    background: linear-gradient(to bottom, lighten(@ma-theme-color, 5%), darken(@ma-theme-color, 5%));
+    height: 50px;
+
+    > .container
+    {
+        display: flex;
+        width: @ma-page-width;
+        height: @ma-header-height;
+        margin: auto;
+        align-items: center;
+
+        h1
+        {
+            margin-right: 32px;
+            a
+            {
+                color: white;
+                text-decoration: none;
+            }
+        }
+
+        .search-form
+        {
+            display: flex;
+            height: @ma-header-height / 1.56;
+
+            input[type="search"]
+            {
+                width: 500px;
+                border: none;
+                border-radius: 4px 0 0 4px;
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            button
+            {
+                color: white;
+                cursor: pointer;
+                background: lighten(@ma-theme-color, 15%);
+                border: none;
+                border-radius: 0 4px 4px 0;
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+        }
+    }
 }
 
-input, textarea, input:focus, textarea:focus
+.ma-main
 {
-    outline: none;
+    > .container
+    {
+        width: @ma-page-width;
+        margin: auto;
+        margin-top: 32px;
+    }
+}
+
+
+
+
+
+.ma-movie-list
+{
+    display: block;
+    width: 80%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    > li
+    {
+        display: flex;
+        position: relative;
+        padding: 20px;
+        margin: 0;
+        border-bottom: 1px solid @ma-separator-color;
+
+        > .column-1
+        {
+            display: flex;
+            flex-direction: column;
+            > img
+            {
+                width: 65px;
+                height: 100px;
+                flex-shrink: 0;
+            }
+
+            > .watched
+            {
+                cursor: pointer;
+            }
+        }
+
+        > .column-2
+        {
+            padding-left: 20px;
+
+            > .rating
+            {
+                color: red;
+                position: absolute;
+                top: 20px;
+                right: 15px;
+            }
+
+            ul
+            {
+                display: block;
+                list-style: none;
+                margin: 0;
+                margin-top: 15px;
+                padding: 0;
+
+                li
+                {
+                    display: block;
+                    line-height: 22px;
+                }
+            }
+        }
+    }
 }
