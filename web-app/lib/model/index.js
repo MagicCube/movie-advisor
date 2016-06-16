@@ -1,1 +1,2 @@
-require("./movie")
+require("./movie");
+require("./watched");

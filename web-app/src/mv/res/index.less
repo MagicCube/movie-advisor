@@ -1,0 +1,75 @@
+@import "../../ma/res/variables.less";
+
+.ma-movie-list
+{
+    display: block;
+    width: 80%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    > li
+    {
+        display: flex;
+        position: relative;
+        padding: 20px;
+        margin: 0;
+        border-bottom: 1px solid @ma-separator-color;
+
+        > .column-1
+        {
+            display: flex;
+            flex-direction: column;
+
+            > img
+            {
+                width: 65px;
+                height: 100px;
+                flex-shrink: 0;
+            }
+
+            > .watched, > .unwatched
+            {
+                border: 1px solid #efefef;
+                background-color: draken(#efefef, 50%);
+                cursor: pointer;
+            }
+
+            > .unwatched
+            {
+                color: draken(#efefef, 1%);
+                background-color: #efefef;
+            }
+        }
+
+        > .column-2
+        {
+            padding-left: 20px;
+
+            > .rating
+            {
+                color: red;
+                position: absolute;
+                top: 20px;
+                right: 15px;
+            }
+
+            ul
+            {
+                display: block;
+                list-style: none;
+                margin: 0;
+                margin-top: 15px;
+                padding: 0;
+
+                li
+                {
+                    display: block;
+                    line-height: 22px;
+                }
+            }
+        }
+    }
+}
