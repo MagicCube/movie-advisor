@@ -16,7 +16,10 @@ class MongoDbPipeline(object):
             mongodb_settings["port"]
         )
         db = connection[mongodb_settings["db"]]
-        self.collection = db["pianyuan.mv"]
+        collection = db["pianyuan.mv"]
+        # Build indices
+        collection.create_index([ ("py_url", pymongo.ASCENDING) ])
+        self.collection = collection
 
     def process_item(self, item, spider):
         cursor = self.collection.find({ "py_url": item["py_url"] })
