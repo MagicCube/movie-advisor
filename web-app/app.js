@@ -1,13 +1,26 @@
-const express = require("express");
-const path = require("path");
-const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
+const express = require("express");
+const cookieParser = require("cookie-parser");
+const mongoose = require("mongoose");
+const path = require("path");
 const webpack = require("webpack");
 const webpackDevMiddleware = require("webpack-dev-middleware");
 
-const routes = require("./routes/index");
 
 const app = express();
+
+// MongoDB
+mongoose.connect("mongodb://localhost/movie-advisor", (error) => {
+    if (!error)
+    {
+        console.log("MongoDB is now connected");
+    }
+    else
+    {
+        console.error(error);
+    }
+});
+require("./lib/model");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -24,6 +37,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
+const routes = require("./routes/index");
 app.use("/", routes);
 
 // Webpack middleware
