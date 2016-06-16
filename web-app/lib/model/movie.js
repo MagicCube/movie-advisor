@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const schema = mongoose.Schema({
     title: { type: String, index: true },
-    year: String,
+    year: Number,
     imageUrl: String,
     imdb: { type: String, index: true },
     countries: [ String ],
