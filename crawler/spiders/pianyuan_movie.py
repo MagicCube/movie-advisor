@@ -42,9 +42,11 @@ class PianyuanMovieSpider(scrapy.Spider):
             img_url = "http:" + img_url
         h1 = response.css("h1::text").extract_first().strip()
         if h1:
+            movie["fullTitle"] = h1
             search_result = re.search(r'\((\d{4})\)', h1)
             if search_result:
                 movie["year"] = int(search_result.group(1))
+                movie["fullTitle"] = h1.replace("(%d)" % movie["year"], "").strip()
         movie["imageUrl"] = img_url
         score = response.css(".score .sum b::text").extract_first() + response.css(".score .sum::text").extract_first()
         try:
