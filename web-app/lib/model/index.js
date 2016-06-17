@@ -1,2 +1,0 @@
-require("./movie");
-require("./watched");

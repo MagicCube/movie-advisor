@@ -1,0 +1,7 @@
+extend ../layout.jade
+
+append main
+    h2=`搜索“${keyword}”的结果 (${subjects.length} 个)`
+
+    include subject-list
+                    

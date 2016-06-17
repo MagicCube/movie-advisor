@@ -3,7 +3,10 @@
 from scrapy import Field, Item
 
 class MovieItem(Item):
+    subjectId = Field()
+    subjectType = Field()
     title = Field()
+    fullTitle = Field()
     year = Field()
     imageUrl = Field()
     imdb = Field()
@@ -12,7 +15,11 @@ class MovieItem(Item):
     directors = Field()
     casts = Field()
     rating = Field()
+    addTime = Field()
 
     # pianyuan.net
-    py_id = Field()
     py_url = Field()
+
+
+class TvItem(MovieItem):
+    pass

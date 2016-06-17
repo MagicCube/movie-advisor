@@ -1,31 +1,33 @@
 import $ from "jquery";
 
-$(".ma-movie-list").on("click", "li", e => {
+$(".ma-subject-list").on("click", "li", e => {
     if (e.target.tagName === "BUTTON")
     {
         const id = e.currentTarget.id;
         const $button = $(e.target);
-        if ($button.text() === "已看")
+        if ($button.hasClass("watch"))
         {
             $.ajax({
-                url: `/api/movie/${id}/watched`,
+                url: `/api/subject/${id}/watched`,
                 method: "post"
             }).then(result => {
                 if (result.successful)
                 {
-                    $button.text("取消").removeClass("watched").addClass("unwatched");
+                    $(e.currentTarget).addClass("watched");
+                    $button.text("取消").removeClass("watch").addClass("unwatch");
                 }
             });
         }
         else
         {
             $.ajax({
-                url: `/api/movie/${id}/unwatched`,
+                url: `/api/subject/${id}/unwatched`,
                 method: "post"
             }).then(result => {
                 if (result.successful)
                 {
-                    $button.text("已看").removeClass("unwatched").addClass("watched");
+                    $(e.currentTarget).removeClass("watched");
+                    $button.text("已看").removeClass("unwatch").addClass("watch");
                 }
             });
         }

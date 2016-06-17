@@ -1,0 +1,17 @@
+ul.ma-subject-list
+    each subject in subjects
+        li(id= subject.subjectId, class= (subject.watched ? "watched" : undefined))
+            .column-1
+                img(src= subject.imageUrl)
+                if subject.watched
+                    button.unwatch 取消
+                else
+                    button.watch 已看
+            .column-2
+                h3.title= `${subject.title} (${subject.year})`
+                h3.rating= `${subject.rating ? subject.rating + " 分" : ""}`
+                ul
+                    li.country= `国家：${subject.countries.join(" / ")}`
+                    li.genres= `类型：${subject.genres.join(" / ")}`
+                    li.director= `导演: ${subject.directors.join(" / ")}`
+                    li.casts= `主演: ${subject.casts.join(" / ")}`

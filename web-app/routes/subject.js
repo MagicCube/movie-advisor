@@ -1,6 +1,7 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const Movie = mongoose.model("movie");
+const models = require("../lib/models");
+const Subject = models.Subject;
+
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -9,18 +10,18 @@ router.get("/", (req, res) => {
     {
         pageIndex = parseInt(req.query.p);
     }
-    Movie.findMostRecent(pageIndex, 100, (error, movies) => {
-        res.render("movie/index", {
-            movies
+    Subject.findMostRecent(pageIndex, 100, (error, subjects) => {
+        res.render("subject/index", {
+            subjects
         });
     });
 });
 
 router.get("/watched", (req, res) => {
-    Movie.findWatched((error, movies) => {
-        res.render("movie/search", {
-            keyword: "已看过",
-            movies
+    Subject.findWatched((error, subjects) => {
+        res.render("subject/search", {
+            keyword: "",
+            subjects
         });
     });
 });
@@ -33,10 +34,10 @@ router.get("/search", (req, res) => {
     else
     {
         const keyword = req.query.k.trim();
-        Movie.searchByKeyword(keyword, (error, movies) => {
-            res.render("movie/search", {
+        Subject.searchByKeyword(keyword, (error, subjects) => {
+            res.render("subject/search", {
                 keyword,
-                movies
+                subjects
             });
         });
     }

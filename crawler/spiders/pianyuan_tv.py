@@ -6,13 +6,13 @@ import scrapy
 from scrapy import Request
 from scrapy.linkextractors import LinkExtractor
 
-from crawler.items import MovieItem
+from crawler.items import TvItem
 
 class PianyuanMovieSpider(scrapy.Spider):
-    name = "pianyuan.mv"
+    name = "pianyuan.tv"
     allowed_domains = [ "pianyuan.net" ]
     start_urls = (
-        "http://pianyuan.net/mv?p=1",
+        "http://pianyuan.net/tv?p=1",
     )
 
     def parse(self, response):
@@ -22,7 +22,7 @@ class PianyuanMovieSpider(scrapy.Spider):
         for link in response.css("h5 a"):
             title = link.css("::text").extract_first()
             py_url = response.urljoin(link.css("::attr(href)").extract_first())
-            movie = MovieItem({
+            movie = TvItem({
                 "title": title,
                 "py_url": py_url
             })
