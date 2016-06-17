@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-router.use("/movie", require("./movie"));
+router.use("/subject", require("./subject"));
 
 module.exports = router;

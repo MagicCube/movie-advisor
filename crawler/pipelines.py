@@ -18,9 +18,9 @@ class MongoDbPipeline(object):
             mongodb_settings["port"]
         )
         db = connection[mongodb_settings["db"]]
-        collection = db["movie"]
+        collection = db["subject"]
         # Build indices
-        collection.create_index([ ("mediaType", pymongo.ASCENDING) ])
+        collection.create_index([ ("subjectType", pymongo.ASCENDING) ])
         collection.create_index([ ("title", pymongo.ASCENDING) ])
         collection.create_index([ ("fullTitle", pymongo.ASCENDING) ])
         collection.create_index([ ("imdb", pymongo.ASCENDING) ])
@@ -29,12 +29,12 @@ class MongoDbPipeline(object):
 
     def process_item(self, item, spider):
         if type(item) == TvItem:
-            item["mediaType"] = "tv"
+            item["subjectType"] = "tv"
         else:
-            item["mediaType"] = "mv"
+            item["subjectType"] = "mv"
         cursor = self.collection.find({ "py_url": item["py_url"] })
         if cursor.count() == 0:
             self.collection.insert(dict(item))
         else:
-            print("DUPLICATED ITEM FOUND: %s" % item["py_url"])
+            print("DUPLICATED SUBJECT FOUND: %s" % item["py_url"])
         return item

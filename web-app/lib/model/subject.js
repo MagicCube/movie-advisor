@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 
 const schema = mongoose.Schema({
+    subjectId: { type: String, index: true },
+    subjectType: { type: String, index: true },
     mediaType: { type: String, index: true },
     title: { type: String, index: true },
     fullTitle: { type: String, index: true },
@@ -14,12 +16,9 @@ const schema = mongoose.Schema({
     rating: Number,
     addTime: Date,
 
-    py_id: { type: String, index: true },
-    py_url: String,
-
-    watched: { type: Boolean, index: true }
+    py_url: String
 }, {
-    collection: "movie"
+    collection: "subject"
 });
 
 schema.statics.searchByKeyword = function(keyword, cb) {
@@ -34,37 +33,8 @@ schema.statics.findWatched = function(cb) {
     this.find({ watched: true }).exec(cb);
 };
 
-
 schema.statics.findMostRecent = function(pageIndex, pageSize, cb) {
     this.find().skip(pageIndex * pageIndex).limit(pageSize).exec(cb);
 };
 
-schema.statics.watch = function(id, cb) {
-    this.findOne({ py_id: id }, (error, movie) => {
-        if (movie)
-        {
-            movie.set("watched", true);
-            movie.save();
-        }
-        if (typeof(cb) === "function")
-        {
-            cb(error);
-        }
-    });
-};
-
-schema.statics.unwatch = function(id, cb) {
-    this.findOne({ py_id: id }, (error, movie) => {
-        if (movie)
-        {
-            movie.set("watched", false);
-            movie.save();
-        }
-        if (typeof(cb) === "function")
-        {
-            cb(error);
-        }
-    });
-};
-
-mongoose.model("movie", schema);
+mongoose.model("subject", schema);

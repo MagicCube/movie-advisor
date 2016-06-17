@@ -1,17 +1,17 @@
 const mongoose = require("mongoose");
 
 const schema = mongoose.Schema({
-    py_id: { type: String, index: true, unique: true },
+    subjectId: { type: String, index: true, unique: true },
     watchedDate: { type: Date, default: Date.now }
 }, {
     collection: "watched"
 });
 
 schema.statics.watch = function(id, cb) {
-    this.findOne({ py_id: id }, (error, movie) => {
-        if (!movie)
+    this.findOne({ subjectId: id }, (error, subject) => {
+        if (!subject)
         {
-            this.insertMany([ { py_id: id } ], cb);
+            this.insertMany([ { subjectId: id } ], cb);
         }
         else
         {
@@ -24,10 +24,10 @@ schema.statics.watch = function(id, cb) {
 };
 
 schema.statics.unwatch = function(id, cb) {
-    this.findOne({ py_id: id }, (error, movie) => {
-        if (movie)
+    this.findOne({ subjectId: id }, (error, subject) => {
+        if (subject)
         {
-            this.remove({ py_id: id }, cb);
+            this.remove({ subjectId: id }, cb);
         }
         else
         {

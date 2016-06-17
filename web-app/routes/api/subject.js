@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose")
-const Movie = mongoose.model("movie");
+const Subject = mongoose.model("subject");
 const Watched = mongoose.model("watched");
 const router = express.Router();
 
@@ -9,12 +9,12 @@ const app = express();
 router.get("/:id", (req, res, next) => {
     if (req.params.id !== "search")
     {
-        Movie.findById(req.params.id, (error, movie) => {
+        Subject.findById(req.params.id, (error, subject) => {
             if (!error)
             {
                 res.send({
                     successful: true,
-                    result: movie
+                    result: subject
                 });
             }
             else
@@ -38,7 +38,7 @@ router.post("/:id/watched", (req, res) => {
     if (req.params.id)
     {
         Watched.watch(req.params.id);
-        Movie.watch(req.params.id, error => {
+        Subject.watch(req.params.id, error => {
             if (!error)
             {
                 res.send({ successful: true });
@@ -59,7 +59,7 @@ router.post("/:id/unwatched", (req, res) => {
     if (req.params.id)
     {
         Watched.unwatch(req.params.id);
-        Movie.unwatch(req.params.id, error => {
+        Subject.unwatch(req.params.id, error => {
             if (!error)
             {
                 res.send({ successful: true });
@@ -77,12 +77,12 @@ router.post("/:id/unwatched", (req, res) => {
 });
 
 router.get("/search", (req, res) => {
-    Movie.searchByKeyword(req.query.k, (error, movies) => {
+    Subject.searchByKeyword(req.query.k, (error, subjects) => {
         if (!error)
         {
             res.send({
                 successful: true,
-                result: movies
+                result: subjects
             });
         }
         else

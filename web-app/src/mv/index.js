@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-$(".ma-movie-list").on("click", "li", e => {
+$(".ma-subject-list").on("click", "li", e => {
     if (e.target.tagName === "BUTTON")
     {
         const id = e.currentTarget.id;
@@ -8,7 +8,7 @@ $(".ma-movie-list").on("click", "li", e => {
         if ($button.text() === "已看")
         {
             $.ajax({
-                url: `/api/movie/${id}/watched`,
+                url: `/api/subject/${id}/watched`,
                 method: "post"
             }).then(result => {
                 if (result.successful)
@@ -20,7 +20,7 @@ $(".ma-movie-list").on("click", "li", e => {
         else
         {
             $.ajax({
-                url: `/api/movie/${id}/unwatched`,
+                url: `/api/subject/${id}/unwatched`,
                 method: "post"
             }).then(result => {
                 if (result.successful)

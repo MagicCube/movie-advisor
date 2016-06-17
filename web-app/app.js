@@ -19,15 +19,6 @@ mongoose.connect("mongodb://localhost/movie-advisor", (error) => {
     {
         console.error(error);
     }
-
-    Watched = mongoose.model("watched");
-    Movie = mongoose.model("movie");
-    Movie.find().exec((error, movies) => {
-        movies.forEach((movie) => {
-            movie.set("mediaType", "mv");
-            movie.save();
-        });
-    });
 });
 require("./lib/model");
 

@@ -1,2 +1,2 @@
-require("./movie");
+require("./subject");
 require("./watched");

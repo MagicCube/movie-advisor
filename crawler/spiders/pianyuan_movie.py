@@ -36,7 +36,7 @@ class PianyuanMovieSpider(scrapy.Spider):
             id = search_result.group(1)
         else:
             id = response.url
-        movie["py_id"] = id
+        movie["subjectId"] = id
         img_url = response.css("a.thumbnail img::attr(src)").extract_first()
         if img_url.startswith("//"):
             img_url = "http:" + img_url
