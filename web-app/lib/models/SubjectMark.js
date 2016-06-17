@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const schema = mongoose.Schema({
     subjectId: { type: String, index: true, unique: true },
     subjectType: { type: String, index: true },
@@ -32,8 +31,14 @@ schema.statics.loadWatchedSubjectIds = function() {
 schema.statics.watch = function(id, cb) {
     if (!this.hasWatched(id))
     {
-        this.insertMany([ { subjectId: id } ], cb);
-        __watchedSubjectIds.push(id);
+        const Subject = require("./Subject");
+        Subject.findBySubjectId(id, (error, subject) => {
+            if (!error && subject)
+            {
+                this.insertMany([ { subjectId: id, subjectType: subject.subjectType } ], cb);
+                __watchedSubjectIds.push(id);
+            }
+        });
     }
     else
     {

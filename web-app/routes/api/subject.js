@@ -10,7 +10,7 @@ const app = express();
 router.get("/:id", (req, res, next) => {
     if (req.params.id !== "search")
     {
-        Subject.findById(req.params.id, (error, subject) => {
+        Subject.findBySubjectId(req.params.id, (error, subject) => {
             if (!error)
             {
                 res.send({

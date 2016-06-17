@@ -29,8 +29,8 @@ schema.statics.searchByKeyword = function(keyword, cb) {
     this.find({ fullTitle: new RegExp(keyword, 'i') }, cb);
 };
 
-schema.statics.findById = function(id, cb) {
-    this.findOne({ _id: id }, cb);
+schema.statics.findBySubjectId = function(id, cb) {
+    this.findOne({ subjectId: id }, cb);
 };
 
 schema.statics.findWatched = function(cb) {
