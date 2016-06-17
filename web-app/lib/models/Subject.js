@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const SubjectMark = require("./SubjectMark");
 
 const schema = mongoose.Schema({
     subjectId: { type: String, index: true },
@@ -14,11 +15,14 @@ const schema = mongoose.Schema({
     directors: [ String ],
     casts: [ String ],
     rating: Number,
-    addTime: Date,
 
     py_url: String
 }, {
     collection: "Subject"
+});
+
+schema.virtual("watched").get(function () {
+    return SubjectMark.hasWatched(this.subjectId);
 });
 
 schema.statics.searchByKeyword = function(keyword, cb) {
@@ -37,4 +41,4 @@ schema.statics.findMostRecent = function(pageIndex, pageSize, cb) {
     this.find().skip(pageIndex * pageIndex).limit(pageSize).exec(cb);
 };
 
-mongoose.model("subject", schema);
+module.exports = mongoose.model("Subject", schema);

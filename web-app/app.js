@@ -10,17 +10,19 @@ const webpackDevMiddleware = require("webpack-dev-middleware");
 const app = express();
 
 // MongoDB
+const models = require("./lib/models");
 mongoose.connect("mongodb://localhost/movie-advisor", (error) => {
     if (!error)
     {
         console.log("MongoDB is now connected");
+        models.SubjectMark.loadWatchedSubjectIds();
     }
     else
     {
         console.error(error);
     }
 });
-require("./lib/model");
+
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

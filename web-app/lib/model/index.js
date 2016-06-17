@@ -1,2 +1,0 @@
-require("./subject");
-require("./watched");

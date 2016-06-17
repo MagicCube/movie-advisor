@@ -1,7 +1,8 @@
 const express = require("express");
-const mongoose = require("mongoose")
-const Subject = mongoose.model("Subject");
-const Watched = mongoose.model("watched");
+const models = require("../../lib/models");
+const Subject = models.Subject;
+const SubjectMark = models.SubjectMark;
+
 const router = express.Router();
 
 const app = express();
@@ -37,8 +38,7 @@ router.get("/:id", (req, res, next) => {
 router.post("/:id/watched", (req, res) => {
     if (req.params.id)
     {
-        Watched.watch(req.params.id);
-        Subject.watch(req.params.id, error => {
+        SubjectMark.watch(req.params.id, error => {
             if (!error)
             {
                 res.send({ successful: true });
@@ -58,8 +58,7 @@ router.post("/:id/watched", (req, res) => {
 router.post("/:id/unwatched", (req, res) => {
     if (req.params.id)
     {
-        Watched.unwatch(req.params.id);
-        Subject.unwatch(req.params.id, error => {
+        SubjectMark.unwatch(req.params.id, error => {
             if (!error)
             {
                 res.send({ successful: true });

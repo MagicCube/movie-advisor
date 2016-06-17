@@ -1,6 +1,7 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const Subject = mongoose.model("Subject");
+const models = require("../lib/models");
+const Subject = models.Subject;
+
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -19,7 +20,7 @@ router.get("/", (req, res) => {
 router.get("/watched", (req, res) => {
     Subject.findWatched((error, subjects) => {
         res.render("subject/search", {
-            keyword: "已看过",
+            keyword: "",
             subjects
         });
     });
