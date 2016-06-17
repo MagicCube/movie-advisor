@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const Subject = mongoose.model("subject");
+const Subject = mongoose.model("Subject");
 const router = express.Router();
 
 router.get("/", (req, res) => {

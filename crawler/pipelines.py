@@ -18,7 +18,7 @@ class MongoDbPipeline(object):
             mongodb_settings["port"]
         )
         db = connection[mongodb_settings["db"]]
-        collection = db["subject"]
+        collection = db["Subject"]
         # Build indices
         collection.create_index([ ("subjectType", pymongo.ASCENDING) ])
         collection.create_index([ ("title", pymongo.ASCENDING) ])

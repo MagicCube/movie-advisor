@@ -18,7 +18,7 @@ const schema = mongoose.Schema({
 
     py_url: String
 }, {
-    collection: "subject"
+    collection: "Subject"
 });
 
 schema.statics.searchByKeyword = function(keyword, cb) {
