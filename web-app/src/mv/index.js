@@ -13,7 +13,7 @@ $(".ma-subject-list").on("click", "li", e => {
             }).then(result => {
                 if (result.successful)
                 {
-                    $button.text("已看").removeClass("watched").addClass("unwatched");
+                    $button.text("取消").removeClass("watched").addClass("unwatched");
                 }
             });
         }
@@ -25,7 +25,7 @@ $(".ma-subject-list").on("click", "li", e => {
             }).then(result => {
                 if (result.successful)
                 {
-                    $button.text("未看").removeClass("unwatched").addClass("watched");
+                    $button.text("已看").removeClass("unwatched").addClass("watched");
                 }
             });
         }
