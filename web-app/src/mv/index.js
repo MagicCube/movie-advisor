@@ -5,7 +5,7 @@ $(".ma-subject-list").on("click", "li", e => {
     {
         const id = e.currentTarget.id;
         const $button = $(e.target);
-        if ($button.hasClass("watched"))
+        if ($button.hasClass("watch"))
         {
             $.ajax({
                 url: `/api/subject/${id}/watched`,
@@ -13,7 +13,8 @@ $(".ma-subject-list").on("click", "li", e => {
             }).then(result => {
                 if (result.successful)
                 {
-                    $button.text("取消").removeClass("watched").addClass("unwatched");
+                    $(e.currentTarget).addClass("watched");
+                    $button.text("取消").removeClass("watch").addClass("unwatch");
                 }
             });
         }
@@ -25,7 +26,8 @@ $(".ma-subject-list").on("click", "li", e => {
             }).then(result => {
                 if (result.successful)
                 {
-                    $button.text("已看").removeClass("unwatched").addClass("watched");
+                    $(e.currentTarget).removeClass("watched");
+                    $button.text("已看").removeClass("unwatch").addClass("watch");
                 }
             });
         }

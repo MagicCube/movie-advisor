@@ -18,6 +18,21 @@
         margin: 0;
         border-bottom: 1px solid @ma-separator-color;
 
+        &.watched
+        {
+            color: #aaa;
+
+            img
+            {
+                opacity: 0.5;
+            }
+
+            .rating
+            {
+                color: #aaa !important;
+            }
+        }
+
         > .column-1
         {
             display: flex;
@@ -30,16 +45,16 @@
                 flex-shrink: 0;
             }
 
-            > .watched, > .unwatched
+            > button.watch, > button.unwatch
             {
                 border: 1px solid #efefef;
                 background-color: draken(#efefef, 50%);
                 cursor: pointer;
             }
 
-            > .unwatched
+            > button.unwatch
             {
-                color: draken(#efefef, 1%);
+                color: gray;
                 background-color: #efefef;
             }
         }

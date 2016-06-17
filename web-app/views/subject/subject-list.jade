@@ -1,12 +1,12 @@
 ul.ma-subject-list
     each subject in subjects
-        li(id= subject.subjectId)
+        li(id= subject.subjectId, class= (subject.watched ? "watched" : undefined))
             .column-1
                 img(src= subject.imageUrl)
                 if subject.watched
-                    button.unwatched 未看
+                    button.unwatch 取消
                 else
-                    button.watched 已看
+                    button.watch 已看
             .column-2
                 h3.title= `${subject.title} (${subject.year})`
                 h3.rating= `${subject.rating ? subject.rating + " 分" : ""}`
