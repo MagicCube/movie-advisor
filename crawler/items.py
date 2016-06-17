@@ -13,6 +13,7 @@ class MovieItem(Item):
     countries = Field()
     genres = Field()
     directors = Field()
+    writers = Field()
     casts = Field()
     rating = Field()
     addTime = Field()

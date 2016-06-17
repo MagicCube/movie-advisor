@@ -65,6 +65,8 @@ class PianyuanMovieSpider(scrapy.Spider):
                 movie["genres"] = field_value.split(",")
             elif field_name == "导演":
                 movie["directors"] = div.css("a::text").extract()
+            elif field_name == "编剧":
+                movie["writers"] = div.css("a::text").extract()
             elif field_name == "主演":
                 movie["casts"] = div.css("a::text").extract()
         return movie
