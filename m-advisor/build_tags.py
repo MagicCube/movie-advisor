@@ -23,7 +23,7 @@ def collect_tags():
         tick(subject, "countries", 5, countries)
         tick(subject, "genres", 10, genres)
     # Extract valuable tags
-    artists = select_valuable_tags("artist", artists)
+    artists = select_valuable_tags("artist", artists, threshold=3)
     countries = select_valuable_tags("country", countries, threshold=100)
     genres = select_valuable_tags("genre", genres, threshold=2)
     print("Countries: %d" % len(countries))
