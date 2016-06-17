@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const schema = mongoose.Schema({
+    mediaType: { type: String, index: true },
     title: { type: String, index: true },
     fullTitle: { type: String, index: true },
     year: Number,
@@ -22,7 +23,7 @@ const schema = mongoose.Schema({
 });
 
 schema.statics.searchByKeyword = function(keyword, cb) {
-    this.find({ title: new RegExp(keyword, 'i') }, cb);
+    this.find({ fullTitle: new RegExp(keyword, 'i') }, cb);
 };
 
 schema.statics.findById = function(id, cb) {

@@ -3,6 +3,7 @@
 from scrapy import Field, Item
 
 class MovieItem(Item):
+    mediaType = Field()
     title = Field()
     fullTitle = Field()
     year = Field()
@@ -18,3 +19,8 @@ class MovieItem(Item):
     # pianyuan.net
     py_id = Field()
     py_url = Field()
+
+
+
+class TvItem(MovieItem):
+    pass

@@ -22,9 +22,10 @@ mongoose.connect("mongodb://localhost/movie-advisor", (error) => {
 
     Watched = mongoose.model("watched");
     Movie = mongoose.model("movie");
-    Movie.findWatched((error, movies) => {
-        movies.forEach(movie => {
-            Watched.watch(movie.py_id);
+    Movie.find().exec((error, movies) => {
+        movies.forEach((movie) => {
+            movie.set("mediaType", "mv");
+            movie.save();
         });
     });
 });
