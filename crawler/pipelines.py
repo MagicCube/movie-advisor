@@ -31,7 +31,7 @@ class MongoDbPipeline(object):
         if type(item) == TvItem:
             item["subjectType"] = "tv"
         else:
-            item["subjectType"] = "mv"
+            item["subjectType"] = "movie"
         cursor = self.collection.find({ "py_url": item["py_url"] })
         if cursor.count() == 0:
             self.collection.insert(dict(item))

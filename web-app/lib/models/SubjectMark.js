@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const schema = mongoose.Schema({
     subjectId: { type: String, index: true, unique: true },
+    subjectType: { type: String, index: true },
     markTime: { type: Date, default: Date.now }
 }, {
     collection: "SubjectMark"

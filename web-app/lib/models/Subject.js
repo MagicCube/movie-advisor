@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const SubjectMark = require("./SubjectMark");
 
 const schema = mongoose.Schema({
-    subjectId: { type: String, index: true },
+    subjectId: { type: String, index: true, unique: true },
     subjectType: { type: String, index: true },
     mediaType: { type: String, index: true },
     title: { type: String, index: true },
