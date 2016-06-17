@@ -6,6 +6,6 @@ Subject = db["Subject"]
 SubjectMark = db["SubjectMark"]
 
 Tag = db["Tag"]
+Tag.create_index([ ("order", ASCENDING) ])
 Tag.create_index([ ("name", ASCENDING) ])
 Tag.create_index([ ("tagType", ASCENDING) ])
-Tag.create_index([ ("count", ASCENDING) ])
