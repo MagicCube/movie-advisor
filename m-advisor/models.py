@@ -8,7 +8,9 @@ from tags import generate_tag_dict
 def load_model(name):
     filename = "%s/models/%s.model" % (abspath(dirname(__file__)), name)
     with open(filename, "rb") as fr:
-        return pickle.load(model, fr)
+        model = pickle.load(fr)
+        print("Model loaded from %s." % filename)
+        return model
 
 def save_model(name, model):
     filename = "%s/models/%s.model" % (abspath(dirname(__file__)), name)
@@ -20,7 +22,7 @@ def save_model(name, model):
 
 
 
-def convert_to_dataset_and_labels(subjects, tag_type, subset_fields, n_top):
+def convert_to_dataset_and_labels(subjects, tag_type, subset_fields, label_field = "subjectId", n_top = 0):
     tags = generate_tag_dict(tag_type)
     dim = len(tags)
     dataset = []
@@ -40,7 +42,7 @@ def convert_to_dataset_and_labels(subjects, tag_type, subset_fields, n_top):
                     sub_set_position += 1
         if np.sum(vec) > 0:
             dataset.append(vec)
-            labels.append(subject["subjectId"])
+            labels.append(subject[label_field])
     if n_top > 0 and len(dataset) > n_top:
         dataset = dataset[:n_top]
     return np.array(dataset), labels
