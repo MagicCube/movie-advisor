@@ -9,9 +9,9 @@ from models import convert_to_dataset_and_labels, save_model
 
 def main():
     all_subjects = list(Subject.find())
-    train_cluster_model(all_subjects, 50, "country", [ "countries" ])
-    train_cluster_model(all_subjects, 50, "genre", [ "genres" ])
-    train_cluster_model(all_subjects, 50, "artist", [ "directors", "writers", "casts" ])
+    train_cluster_model(all_subjects, 20, "country", [ "countries" ])
+    train_cluster_model(all_subjects, 100, "genre", [ "genres" ])
+    train_cluster_model(all_subjects, 100, "artist", [ "directors", "writers", "casts" ])
 
 
 def train_cluster_model(subjects, n_clusters, tag_type, subset_fields, n_top = 0):

@@ -40,7 +40,7 @@ def update_tags(subjects_to_be_updated, subjects, tag_type, subset_fields):
             subjects_to_be_updated[subject_id] = {}
         subject = subjects_to_be_updated[subject_id]
         tag_name = "%sTag" % tag_type
-        subject[tag_name] = int(group_index)
+        subject[tag_name] = int(group_index) + 1
         index += 1
     print("Done.\n")
 
